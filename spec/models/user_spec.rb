@@ -3,13 +3,13 @@ require 'rails_helper'
 describe 'Validations' do
 
   it 'should not be valid without a name' do
-    author = Author.create
+    user = User.create
 
-    expect(author).to_not be_valid
+    expect(user).to_not be_valid
   end
 
-  it 'should has_many books' do
-    association = Author.reflect_on_association(:books)
+  it 'should has_many reviews' do
+    association = User.reflect_on_association(:reviews)
     expect(association.macro).to eq :has_many
   end
 
