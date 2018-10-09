@@ -1,16 +1,11 @@
 require 'rails_helper'
-
-describe 'Validations' do
-
-  it 'should not be valid without a name' do
-    author = Author.create
-
-    expect(author).to_not be_valid
+describe Author, type: :model do
+  describe 'Validations' do
+    it { should validate_presence_of(:name)}
   end
 
-  it 'should has_many books' do
-    association = Author.reflect_on_association(:books)
-    expect(association.macro).to eq :has_many
+  describe 'Relationships' do
+    it { should have_many(:author_books)}
+    it { should have_many(:books).through(:author_books)}
   end
-
 end
