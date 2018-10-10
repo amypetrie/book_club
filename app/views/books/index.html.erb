@@ -1,9 +1,12 @@
 <% @books.each do |book| %>
-  <h1><%= book.title %> </h1>
-  <% book.authors.each do |author| %>
-  <h2><%= author.name %> </h2>
-  <% book.reviews.each do |review| %>
-    <h3><%= review.review_text %> </h3>
-      <% end %>
-  <% end %>
+  <div id="book_<%= book.id %>" class="book">
+    <img src="" alt="" class="book-cover">
+    <div class="book_text">
+      <h3><%= book.title %> <span class="avg_rating">(<%= book.reviews.avg_rating %>)</span></h3>
+      <h4><%= book.authors.author_names %> </h4>
+      <p>Pages: <%= book.page_num %></p>
+      <p>Published: <%= book.year_published %> </p>
+      <p><%= book.reviews.count %> Reviews</p>
+    </div>
+  </div>
 <% end %>
