@@ -20,12 +20,6 @@ describe 'Validations' do
     expect(book).to_not be_valid
   end
 
-  it 'should not be valid without a author_id' do
-    book = Book.create(title:'Book 1', page_num:350, year_published: 'Oct 10 2016')
-
-    expect(book).to_not be_valid
-  end
-
   it 'should has_many authors' do
     association = Book.reflect_on_association(:authors)
     expect(association.macro).to eq :has_many
