@@ -3,7 +3,7 @@
   <% book.authors.each do |author| %>
   <h2><%= author.name %> </h2>
   <% book.reviews.each do |review| %>
-    <h3><%= review.review_text %> </h3>
+    <h3><%= review.user.user_name %> </h3>
       <% end %>
   <% end %>
 <% end %>
