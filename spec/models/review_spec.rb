@@ -1,40 +1,21 @@
 require 'rails_helper'
 
-describe 'Validations' do
+describe Review, type: :model do
 
-  it 'should not be valid without a review title' do
-    review = Review.create
+  describe 'Validations' do
 
-    expect(review).to_not be_valid
+    it { should validate_presence_of(:review_title)}
+    it { should validate_presence_of(:rating)}
+    it { should validate_presence_of(:review_text)}
+    it { should validate_presence_of(:book_id)}
+    it { should validate_presence_of(:user_name)}
+
   end
 
-  it 'should not be valid without a rating' do
-    review = Review.create(review_title:'Review 1')
+  describe 'Relationships' do
 
-    expect(review).to_not be_valid
-  end
+    it { should belong_to(:book)}
 
-  it 'should not be valid without a review_text' do
-    review = Review.create(review_title:'Review 1', rating:2)
-
-    expect(review).to_not be_valid
-  end
-
-  it 'should not be valid without a book_id' do
-    review = Review.create(review_title:'Review 1', rating:2, review_text: 'Twas Terrible!')
-
-    expect(review).to_not be_valid
-  end
-
-  it 'should not be valid without a user_name' do
-    review = Review.create(review_title:'Review 1', rating:2, review_text: 'Twas Terrible!')
-
-    expect(review).to_not be_valid
-  end
-
-  it 'should belongs_to book' do
-    association = Review.reflect_on_association(:book)
-    expect(association.macro).to eq :belongs_to
   end
 
 end

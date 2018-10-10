@@ -1,28 +1,20 @@
 require 'rails_helper'
 
-describe 'Validations' do
+describe Book, type: :model do
 
-  it 'should not be valid without a title' do
-    book = Book.create
+  describe 'Validations' do
 
-    expect(book).to_not be_valid
+    it { should validate_presence_of(:title)}
+    it { should validate_presence_of(:page_num)}
+    it { should validate_presence_of(:year_published)}
+
   end
 
-  it 'should not be valid without a page_num' do
-    book = Book.create(title:'Book 1')
+  describe 'Relationships' do
 
-    expect(book).to_not be_valid
-  end
+    it { should have_many(:author_books)}
+    it { should have_many(:authors).through(:author_books)}
 
-  it 'should not be valid without a year_published' do
-    book = Book.create(title:'Book 1', page_num:350)
-
-    expect(book).to_not be_valid
-  end
-
-  it 'should has_many authors' do
-    association = Book.reflect_on_association(:authors)
-    expect(association.macro).to eq :has_many
   end
 
 end
