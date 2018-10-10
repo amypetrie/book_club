@@ -31,18 +31,19 @@ ActiveRecord::Schema.define(version: 20181009173542) do
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.integer "page_num"
-    t.string "date_published"
+    t.integer "year_published"
     t.integer "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.string "title"
+    t.string "review_title" # added review in front of title to distinguish
     t.integer "rating"
     t.string "review_text"
     t.integer "book_id"
-    t.integer "user_id"
+    t.string "user_name"
+    # t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
