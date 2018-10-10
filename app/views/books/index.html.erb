@@ -1,12 +1,47 @@
+<section class="top_books">
+  <h2>Highest Rated Books</h2>
+  <% @top_books.each do |top_book| %>
+    <div id="top_book_<%= top_book.id %>" class="book">
+      <img src="" alt="" class="book-cover">
+      <div class="book_text">
+        <h3><%= top_book.title %> <span class="avg_rating">(<%= top_book.reviews.avg_rating %>)</span></h3>
+        <p>Authors: <%= top_book.authors.author_names %> </p>
+        <p>Pages: <%= top_book.page_num %></p>
+        <p>Published: <%= top_book.year_published %> </p>
+        <p><%= top_book.reviews.count %> Reviews</p>
+      </div>
+    </div>
+  <% end %>
+</section>
+
+<section class="low_books">
+  <h2>Lowest Rated Books</h2>
+  <% @low_books.each do |low_book| %>
+    <div id="low_book_<%= low_book.id %>" class="book">
+      <img src="" alt="" class="book-cover">
+      <div class="book_text">
+        <h3><%= low_book.title %> <span class="avg_rating">(<%= low_book.reviews.avg_rating %>)</span></h3>
+        <p>Authors: <%= low_book.authors.author_names %> </p>
+        <p>Pages: <%= low_book.page_num %></p>
+        <p>Published: <%= low_book.year_published %> </p>
+        <p><%= low_book.reviews.count %> Reviews</p>
+      </div>
+    </div>
+  <% end %>
+</section>
+
+<section class="all_books">
+<h2>All Books</h2>
 <% @books.each do |book| %>
   <div id="book_<%= book.id %>" class="book">
     <img src="" alt="" class="book-cover">
     <div class="book_text">
       <h3><%= book.title %> <span class="avg_rating">(<%= book.reviews.avg_rating %>)</span></h3>
-      <h4><%= book.authors.author_names %> </h4>
+      <p>Authors: <%= book.authors.author_names %> </p>
       <p>Pages: <%= book.page_num %></p>
       <p>Published: <%= book.year_published %> </p>
       <p><%= book.reviews.count %> Reviews</p>
     </div>
   </div>
 <% end %>
+</section>

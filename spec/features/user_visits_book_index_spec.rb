@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User visits /' do
+describe 'User visits /books' do
 
   before(:each) do
     @book_1 = Book.create(
