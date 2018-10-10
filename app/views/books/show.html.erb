@@ -1,1 +1,23 @@
-<%= @book.title %>
+<h2><%= @book.title %></h2>
+<p>Average Rating: <%=@book.reviews.avg_rating%></p>
+<p>Author(s): <%= @book.authors.author_names%></p>
+<p>Pages: <%= @book.page_num %></p>
+
+<h2>Top Reviews</h2>
+<% @top_reviews.each do |review| %>
+  <h4><%=review.review_title%></h4><p>Rating: <%=review.rating%></p>
+  <p><%=review.user.user_name%></p>
+<% end %>
+
+<h2>Lowest Reviews</h2>
+<% @low_reviews.each do |review| %>
+  <h4><%=review.review_title%></h4><p>Rating: <%=review.rating%></p>
+  <p><%=review.user.user_name%></p>
+<% end %>
+
+<h2>All Reviews:</h2>
+<% @book.reviews.each do |review| %>
+  <p>Reviewer:<%=review.user.user_name%></p>
+  <p>Rating: <%=review.rating%>, <%=review.review_title%></p>
+  <P><%=review.review_text%></p>
+<% end %>
