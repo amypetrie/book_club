@@ -1,23 +1,39 @@
-<h2><%= @book.title %></h2>
-<p>Average Rating: <%=@book.reviews.avg_rating%></p>
-<p>Author(s): <%= @book.authors.author_names%></p>
-<p>Pages: <%= @book.page_num %></p>
+<section class="show_book_info">
+  <div class="book">
+    <h2><%= @book.title %></h2>
+    <p>Average Rating: <%=@book.reviews.avg_rating%></p>
+    <p>Author(s): <%= @book.authors.author_names%></p>
+    <plas>Pages: <%= @book.page_num %></p>
+  </div>
+</section>
 
-<h2>Top Reviews</h2>
-<% @top_reviews.each do |review| %>
-  <h4><%=review.review_title%></h4><p>Rating: <%=review.rating%></p>
-  <p><%=review.user.user_name%></p>
-<% end %>
+<section class="top_reviews">
+  <h2>Top Reviews</h2>
+  <div class="review">
+  <% @top_reviews.each do |review| %>
+    <h4><%=review.review_title%></h4><p>Rating: <%=review.rating%></p>
+    <p><%=review.user.user_name%></p>
+  <% end %>
+  </div>
+</section>
 
-<h2>Lowest Reviews</h2>
-<% @low_reviews.each do |review| %>
-  <h4><%=review.review_title%></h4><p>Rating: <%=review.rating%></p>
-  <p><%=review.user.user_name%></p>
-<% end %>
+<section class="low_reviews">
+  <h2>Lowest Reviews</h2>
+  <div class="review">
+    <% @low_reviews.each do |review| %>
+      <h4><%=review.review_title%></h4><p>Rating: <%=review.rating%></p>
+      <p><%=review.user.user_name%></p>
+    <% end %>
+  </div>
+</section>
 
-<h2>All Reviews:</h2>
-<% @book.reviews.each do |review| %>
-  <p>Reviewer:<%=review.user.user_name%></p>
-  <p>Rating: <%=review.rating%>, <%=review.review_title%></p>
-  <P><%=review.review_text%></p>
-<% end %>
+<section class="all_reviews">
+  <h2>All Reviews:</h2>
+  <div class="review">
+  <% @book.reviews.each do |review| %>
+    <p>Reviewer:<%=review.user.user_name%></p>
+    <p>Rating: <%=review.rating%>, <%=review.review_title%></p>
+    <P><%=review.review_text%></p>
+  <% end %>
+  </div>
+</section>
