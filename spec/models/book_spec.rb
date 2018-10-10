@@ -14,14 +14,8 @@ describe 'Validations' do
     expect(book).to_not be_valid
   end
 
-  it 'should not be valid without a date_published' do
+  it 'should not be valid without a year_published' do
     book = Book.create(title:'Book 1', page_num:350)
-
-    expect(book).to_not be_valid
-  end
-
-  it 'should not be valid without a author_id' do
-    book = Book.create(title:'Book 1', page_num:350, date_published: 'Oct 10 2016')
 
     expect(book).to_not be_valid
   end
