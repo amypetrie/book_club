@@ -55,6 +55,22 @@ describe 'as a visitor' do
       end
     end
 
+    it 'should see year_published for book id 1' do
+      visit "/books/#{@book_1.id}"
+
+      within(".book") do
+      expect(page).to have_content(@book_1.year_published)
+      end
+    end
+
+    it 'should see total ratings for book id 1' do
+      visit "/books/#{@book_1.id}"
+
+      within(".book") do
+      expect(page).to have_content(@book_1.reviews.count)
+      end
+    end
+
     it 'should not see title for book id 2' do
       visit "/books/#{@book_1.id}"
 
@@ -86,6 +102,26 @@ describe 'as a visitor' do
       expect(page).to have_content(@review_1.review_title)
       expect(page).to have_content(@review_2.review_title)
       expect(page).to have_content(@review_3.review_title)
+      end
+    end
+
+    it 'should not see review_text of top three reviews for book 1 in top reviews' do
+      visit "/books/#{@book_1.id}"
+
+      within(".top_reviews") do
+      expect(page).to_not have_content(@review_1.review_text)
+      expect(page).to_not have_content(@review_2.review_text)
+      expect(page).to_not have_content(@review_3.review_text)
+      end
+    end
+
+    it 'should see user_names of top three reviews for book 1 in top reviews' do
+      visit "/books/#{@book_1.id}"
+
+      within(".top_reviews") do
+      expect(page).to have_content(@user_1.user_name)
+      expect(page).to have_content(@user_2.user_name)
+      expect(page).to have_content(@user_3.user_name)
       end
     end
 
