@@ -5,7 +5,7 @@
     <div id="top_book_<%= top_rated_book.id %>" class="book">
       <div class="book_cover_container"><img src="<%= top_rated_book.img_url %>" alt="" class="book_cover"></div>
       <div class="book_text">
-        <h3><%= top_rated_book.title %> <span class="avg_rating">(<%= top_rated_book.reviews.avg_rating %>)</span></h3>
+        <h3><%= top_rated_book.title %> <span class="avg_rating">(<%= rounded_1(top_rated_book.reviews.avg_rating) %>)</span></h3>
         <h4>Authors:
           <% top_rated_book.authors.each do |author| %>
             <% if author != top_rated_book.authors.last %>
@@ -30,7 +30,7 @@
     <div id="low_book_<%= low_rated_book.id %>" class="book">
       <div class="book_cover_container"><img src="<%= low_rated_book.img_url %>" alt="" class="book_cover"></div>
       <div class="book_text">
-        <h3><%= low_rated_book.title %> <span class="avg_rating">(<%= low_rated_book.reviews.avg_rating %>)</span></h3>
+        <h3><%= low_rated_book.title %> <span class="avg_rating">(<%= rounded_1(low_rated_book.reviews.avg_rating) %>)</span></h3>
         <h4>Authors:
           <% low_rated_book.authors.each do |author| %>
             <% if author != low_rated_book.authors.last %>
@@ -77,7 +77,7 @@
       <div id="book_<%= book.id %>" class="book">
         <div class="book_cover_container"><img src="<%= book.img_url %>" alt="" class="book_cover"></div>
         <div class="book_text">
-          <h3><%= book.title %> <span class="avg_rating">(<%= book.reviews.avg_rating %>)</span></h3>
+          <h3><%= book.title %> <span class="avg_rating">(<%= rounded_1(book.reviews.avg_rating) %>)</span></h3>
           <h4>Authors:
             <% book.authors.each do |author| %>
               <% if author != book.authors.last %>
