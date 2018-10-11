@@ -1,15 +1,23 @@
 <section class="top_books">
   <h2>Highest Rated Books</h2>
   <div class="flex_row_3">
-  <% @top_books.each do |top_book| %>
-    <div id="top_book_<%= top_book.id %>" class="book">
-      <div class="book_cover_container"><img src="<%= top_book.img_url %>" alt="" class="book_cover"></div>
+  <% @top_rated_books.each do |top_rated_book| %>
+    <div id="top_book_<%= top_rated_book.id %>" class="book">
+      <div class="book_cover_container"><img src="<%= top_rated_book.img_url %>" alt="" class="book_cover"></div>
       <div class="book_text">
-        <h3><%= top_book.title %> <span class="avg_rating">(<%= top_book.reviews.avg_rating %>)</span></h3>
-        <h4>Authors: <%= top_book.authors.author_names %> </h4>
-        <p>Pages: <%= top_book.page_num %></p>
-        <p>Published: <%= top_book.year_published %> </p>
-        <p><%= top_book.reviews.count %> Reviews</p>
+        <h3><%= top_rated_book.title %> <span class="avg_rating">(<%= top_rated_book.reviews.avg_rating %>)</span></h3>
+        <h4>Authors:
+          <% top_rated_book.authors.each do |author| %>
+            <% if author != top_rated_book.authors.last %>
+              <a href="/authors/<%= author.id %>" title=""><%= author.name %>, </a>
+            <% else %>
+              <a href="/authors/<%= author.id %>" title=""><%= author.name %></a>
+            <% end %>
+          <% end %>
+        </h4>
+        <p>Pages: <%= top_rated_book.page_num %></p>
+        <p>Published: <%= top_rated_book.year_published %> </p>
+        <p><%= top_rated_book.reviews.count %> Reviews</p>
       </div>
     </div>
   <% end %>
@@ -18,15 +26,23 @@
 <section class="low_books">
   <h2>Lowest Rated Books</h2>
   <div class="flex_row_3">
-  <% @low_books.each do |low_book| %>
-    <div id="low_book_<%= low_book.id %>" class="book">
-      <div class="book_cover_container"><img src="<%= low_book.img_url %>" alt="" class="book_cover"></div>
+  <% @low_rated_books.each do |low_rated_book| %>
+    <div id="low_book_<%= low_rated_book.id %>" class="book">
+      <div class="book_cover_container"><img src="<%= low_rated_book.img_url %>" alt="" class="book_cover"></div>
       <div class="book_text">
-        <h3><%= low_book.title %> <span class="avg_rating">(<%= low_book.reviews.avg_rating %>)</span></h3>
-        <h4>Authors: <%= low_book.authors.author_names %> </h4>
-        <p>Pages: <%= low_book.page_num %></p>
-        <p>Published: <%= low_book.year_published %> </p>
-        <p><%= low_book.reviews.count %> Reviews</p>
+        <h3><%= low_rated_book.title %> <span class="avg_rating">(<%= low_rated_book.reviews.avg_rating %>)</span></h3>
+        <h4>Authors:
+          <% low_rated_book.authors.each do |author| %>
+            <% if author != low_rated_book.authors.last %>
+              <a href="/authors/<%= author.id %>" title=""><%= author.name %>, </a>
+            <% else %>
+              <a href="/authors/<%= author.id %>" title=""><%= author.name %></a>
+            <% end %>
+          <% end %>
+        </h4>
+        <p>Pages: <%= low_rated_book.page_num %></p>
+        <p>Published: <%= low_rated_book.year_published %> </p>
+        <p><%= low_rated_book.reviews.count %> Reviews</p>
       </div>
     </div>
   <% end %>
@@ -62,7 +78,15 @@
         <div class="book_cover_container"><img src="<%= book.img_url %>" alt="" class="book_cover"></div>
         <div class="book_text">
           <h3><%= book.title %> <span class="avg_rating">(<%= book.reviews.avg_rating %>)</span></h3>
-          <h4>Authors: <%= book.authors.author_names %> </h4>
+          <h4>Authors:
+            <% book.authors.each do |author| %>
+              <% if author != book.authors.last %>
+                <a href="/authors/<%= author.id %>" title=""><%= author.name %>, </a>
+              <% else %>
+                <a href="/authors/<%= author.id %>" title=""><%= author.name %></a>
+              <% end %>
+            <% end %>
+          </h4>
           <p>Pages: <%= book.page_num %></p>
           <p>Published: <%= book.year_published %> </p>
           <p><%= book.reviews.count %> Reviews</p>
