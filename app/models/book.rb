@@ -21,4 +21,12 @@ class Book < ApplicationRecord
     .limit(3)
   end
 
+  def self.sort_books(params)
+    if params[:sort] == "page_num"
+      order(page_num: params[:order])
+    else
+      all
+    end
+  end
+
 end
