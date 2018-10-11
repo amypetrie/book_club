@@ -1,0 +1,152 @@
+/* Global Styles */
+body {
+  font-family: Ubuntu, sans-serif;
+  font-size:1em;
+  color:#111;
+  margin:0;
+  padding:0;
+}
+
+body * {
+  display:block;
+  box-sizing: border-box;
+}
+
+h1 {
+
+}
+
+h2 {
+    margin: 40px 0;
+    padding: 0 10px 10px;
+    font-weight: bold;
+    border-bottom: 1px solid rgb(17,17,17);
+}
+
+h3 {
+  margin:15px 0;
+  font-weight:bold;
+}
+
+p {
+
+}
+
+span {
+ display:inline;
+}
+
+ul {
+
+}
+
+li {
+
+}
+
+a {
+
+}
+
+a:hover {
+
+}
+
+p > a, li > a, h2 > a, h3 > a, h4 > a {
+  display:inline;
+}
+
+/* Header Styles */
+header {
+  background-color:#111;
+  color:white;
+  padding:15px 10%;
+  text-align:center;
+}
+
+/* Footer Styles */
+footer {
+  background-color:#111;
+  color:white;
+  padding:15px 10%;
+  text-align:center;
+}
+
+/* Content Styles */
+
+section {
+  padding:15px 10%;
+}
+
+.flex_row_3 {
+  display:flex;
+}
+
+.flex_row_3 > div {
+    width: 30%;
+    margin: 0 1.5%;
+}
+
+.all_books {
+
+}
+
+.flex_row_2 {
+  display:flex;
+}
+
+aside {
+  width:25%;
+}
+
+.book_grid_4 {
+  width: 75%;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  justify-items: center;
+  align-items: start;
+}
+
+/* High Activity Users */
+.high_activity_user {
+  text-align:center;
+}
+
+/* Book Styles */
+.book {
+  display:flex;
+}
+
+.book_cover_container {
+  width:30%;
+}
+
+.book_cover {
+  width:100%;
+  height:auto;
+  padding:15px 0;
+}
+
+.book_text {
+  width:70%;
+  padding-left:25px;
+}
+
+.all_books .book {
+    flex-direction: column;
+    padding: 0 10px;
+}
+
+
+.all_books .book_cover_container {
+    width: 60%;
+    margin: auto;
+}
+
+.all_books .book_text {
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    margin: auto;
+    font-size: 0.9em;
+}

@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20181010175320) do
     t.string "title"
     t.integer "page_num"
     t.integer "year_published"
+    t.string "img_url", default: "https://jhupbooks.press.jhu.edu/sites/default/files/default_images/book_1.png"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
