@@ -11,8 +11,8 @@
   <h2>Top Reviews</h2>
   <div class="review">
   <% @top_reviews.each do |review| %>
-    <h4><%=review.review_title%></h4><p>Rating: <%=review.rating%></p>
-    <p><%=review.user.user_name%></p>
+    <h4><%=review.review_title%></h4>
+    <p><%=review.user.user_name%> gave a rating of <b><%=review.rating%></b></p>
   <% end %>
   </div>
 </section>
@@ -21,19 +21,20 @@
   <h2>Lowest Reviews</h2>
   <div class="review">
     <% @low_reviews.each do |review| %>
-      <h4><%=review.review_title%></h4><p>Rating: <%=review.rating%></p>
-      <p><%=review.user.user_name%></p>
+      <h4><%=review.review_title%></h4>
+      <p><%=review.user.user_name%> gave a rating of <b><%=review.rating%></b></p>
     <% end %>
   </div>
 </section>
 
 <section class="all_reviews">
   <h2>All Reviews:</h2>
+  <p><a href="/books/new" target="_blank" rel="nofollow">Add a new review</a></p>
   <div class="review">
   <% @book.reviews.each do |review| %>
-    <p>Reviewer:<%=review.user.user_name%></p>
-    <p>Rating: <%=review.rating%>, <%=review.review_title%></p>
-    <P><%=review.review_text%></p>
+    <h4><%=review.review_title%></h4>
+    <p><%=review.user.user_name%> gave a rating of <b><%=review.rating%></b></p>
+    <P>"<%=review.review_text%>"</p>
   <% end %>
   </div>
 </section>
