@@ -5,13 +5,13 @@
     <div id="top_book_<%= top_rated_book.id %>" class="book">
       <div class="book_cover_container"><img src="<%= top_rated_book.img_url %>" alt="" class="book_cover"></div>
       <div class="book_text">
-        <h3><%= top_rated_book.title %> <span class="avg_rating">(<%= top_rated_book.reviews.avg_rating %>)</span></h3>
+        <h3><a href="/books/<%= top_rated_book.id %>"><%= top_rated_book.title %></a> <span class="avg_rating">(<%= rounded_1(top_rated_book.reviews.avg_rating) %>)</span></h3>
         <h4>Authors:
           <% top_rated_book.authors.each do |author| %>
             <% if author != top_rated_book.authors.last %>
-              <a href="/authors/<%= author.id %>" title=""><%= author.name %>, </a>
+              <a href="/authors/<%= author.id %>"><%= author.name %></a>,
             <% else %>
-              <a href="/authors/<%= author.id %>" title=""><%= author.name %></a>
+              <a href="/authors/<%= author.id %>"><%= author.name %></a>
             <% end %>
           <% end %>
         </h4>
@@ -30,13 +30,13 @@
     <div id="low_book_<%= low_rated_book.id %>" class="book">
       <div class="book_cover_container"><img src="<%= low_rated_book.img_url %>" alt="" class="book_cover"></div>
       <div class="book_text">
-        <h3><%= low_rated_book.title %> <span class="avg_rating">(<%= low_rated_book.reviews.avg_rating %>)</span></h3>
+        <h3><a href="/books/<%= low_rated_book.id %>"><%= low_rated_book.title %></a> <span class="avg_rating">(<%= rounded_1(low_rated_book.reviews.avg_rating) %>)</span></h3>
         <h4>Authors:
           <% low_rated_book.authors.each do |author| %>
             <% if author != low_rated_book.authors.last %>
-              <a href="/authors/<%= author.id %>" title=""><%= author.name %>, </a>
+              <a href="/authors/<%= author.id %>"><%= author.name %>, </a>
             <% else %>
-              <a href="/authors/<%= author.id %>" title=""><%= author.name %></a>
+              <a href="/authors/<%= author.id %>"><%= author.name %></a>
             <% end %>
           <% end %>
         </h4>
@@ -53,7 +53,7 @@
   <div class="flex_row_3">
   <% @high_activity_users.each do |high_activity_user| %>
     <div id="high_activity_user_<%= high_activity_user.id %>" class="high_activity_user">
-      <h3><%= high_activity_user.user_name %> </h3>
+      <h3><a href="/users/<%= high_activity_user.id%>"><%= high_activity_user.user_name %></a></h3>
       <p><%= high_activity_user.reviews.count %> Reviews Written</p>
     </div>
   <% end %>
@@ -65,8 +65,6 @@
   <aside class="sorting_sidebar">
     <h4>Sort By:</h4>
       <ul class="sort_list">
-        <!-- <li>Book Title <a href="#" title="">(arrows)</a></li>
-        <li>Author's Name <a href="#" title="">(arrows)</a></li> -->
         <li>Page Number <a href="#" title="">(arrows)</a></li>
         <li>Average Rating <a href="#" title="">(arrows)</a></li>
         <li>Number of Reviews <a href="#" title="">(arrows)</a></li>
@@ -77,13 +75,13 @@
       <div id="book_<%= book.id %>" class="book">
         <div class="book_cover_container"><img src="<%= book.img_url %>" alt="" class="book_cover"></div>
         <div class="book_text">
-          <h3><%= book.title %> <span class="avg_rating">(<%= book.reviews.avg_rating %>)</span></h3>
+          <h3><a href="/books/<%= book.id %>"><%= book.title %></a> <span class="avg_rating">(<%= rounded_1(book.reviews.avg_rating) %>)</span></h3>
           <h4>Authors:
             <% book.authors.each do |author| %>
               <% if author != book.authors.last %>
-                <a href="/authors/<%= author.id %>" title=""><%= author.name %>, </a>
+                <a href="/authors/<%= author.id %>"><%= author.name %>, </a>
               <% else %>
-                <a href="/authors/<%= author.id %>" title=""><%= author.name %></a>
+                <a href="/authors/<%= author.id %>"><%= author.name %></a>
               <% end %>
             <% end %>
           </h4>

@@ -34,9 +34,7 @@ describe 'User visits /books' do
     @author_3 = @book_3.authors.create(name: "Dr. Brad Smith")
     @author_4 = @book_3.authors.create(name: "Dr. Angelina Smith")
 
-    @review_7 = @book_3.reviews.create(review_title: "Not helpful", rating: 2, review_text: "This book was contrite and trivial.", user_id: @user_6.id)
-    @review_8 = @book_3.reviews.create(review_title: "Marraige ruiner!", rating: 1, review_text: "My marraige was made worse through this book.", user_id: @user_7.id)
-    @review_9 = @book_3.reviews.create(review_title: "Poorly written", rating: 1, review_text: "The authors appear to not know how to write.", user_id: @user_5.id)
+    @review_7 = @book_3.reviews.create(review_title: "Not helpful", rating: 1, review_text: "This book was contrite and trivial.", user_id: @user_6.id)
 
     @book_4 = Book.create(title: "The Great Gatsby", page_num: 301, year_published: 1925)
     @author_5 = @book_4.authors.create(name: "F. Scott Fitzgerald")
@@ -64,6 +62,10 @@ describe 'User visits /books' do
 
     @review_18 = @book_7.reviews.create(review_title: "Fav Clavell book!", rating: 5, review_text: "Best of the series by far!", user_id: @user_8.id)
     @review_19 = @book_7.reviews.create(review_title: "Clavell doesnt disappoint!", rating: 5, review_text: "The writing and descriptions have no match.", user_id: @user_12.id)
+    @review_23 = @book_7.reviews.create(review_title: "Fav Clavell book!", rating: 5, review_text: "Best of the series by far!", user_id: @user_9.id)
+    @review_24 = @book_7.reviews.create(review_title: "Clavell doesnt disappoint!", rating: 5, review_text: "The writing and descriptions have no match.", user_id: @user_10.id)
+    @review_25 = @book_7.reviews.create(review_title: "Fav Clavell book!", rating: 5, review_text: "Best of the series by far!", user_id: @user_11.id)
+    @review_26 = @book_7.reviews.create(review_title: "Clavell doesnt disappoint!", rating: 5, review_text: "The writing and descriptions have no match.", user_id: @user_7.id)
 
     @book_8 = @author_2.books.create(title: "Noble House", page_num: 976, year_published: 1989)
     @review_20 = @book_8.reviews.create(review_title: "Left me speechless", rating: 5, review_text: "Cant wait to read again!", user_id: @user_10.id)
@@ -71,16 +73,16 @@ describe 'User visits /books' do
     @review_22 = @book_8.reviews.create(review_title: "The best!!", rating: 5, review_text: "Super great!", user_id: @user_9.id)
   end
 
-  describe "they should see books with the book's" do
+  describe "they should see all books with" do
 
-    it "title" do
+    it "book title" do
       visit '/books'
 
       expect(page).to have_content(@book_1.title)
       expect(page).to have_content(@book_2.title)
     end
 
-    it "page_num" do
+    it "book page_num" do
       visit '/books'
 
       expect(page).to have_content(
@@ -91,7 +93,7 @@ describe 'User visits /books' do
       )
     end
 
-    it "year_published" do
+    it "book year_published" do
       visit '/books'
 
       expect(page).to have_content(
@@ -102,7 +104,7 @@ describe 'User visits /books' do
       )
     end
 
-    it "authors" do
+    it "book authors" do
       visit '/books'
 
       book_1_authors = @book_1.authors.pluck(:name).join(', ')
@@ -112,18 +114,200 @@ describe 'User visits /books' do
       expect(page).to have_content(book_2_authors)
     end
 
-    it 'average rating' do
+    it 'book average rating' do
       visit '/books'
 
-      expect(page).to have_content("(#{@book_1.reviews.avg_rating})")
-      expect(page).to have_content("(#{@book_2.reviews.avg_rating})")
+      expect(page).to have_content("(#{@book_1.reviews.avg_rating.round(1)})")
+      expect(page).to have_content("(#{@book_2.reviews.avg_rating.round(1)})")
+    end
+
+    it 'book number of reviews' do
+      visit '/books'
+
+      expect(page).to have_content("#{@book_1.reviews.count} Reviews")
+      expect(page).to have_content("#{@book_2.reviews.count} Reviews")
+    end
+
+  end
+
+  describe 'They should see top 3 rated books with' do
+
+    it 'book title' do
+      visit '/books'
+
+      within('.top_books') do
+        expect(page).to have_content(@book_7.title)
+        expect(page).to_not have_content(@book_3.title)
+      end
+    end
+
+    it 'book average rating' do
+      visit '/books'
+
+      within('.top_books') do
+        expect(page).to have_content(
+          "(#{@book_7.reviews.avg_rating.round(1)})"
+        )
+        expect(page).to_not have_content(
+          "(#{@book_3.reviews.avg_rating.round(1)})"
+        )
+      end
+    end
+
+    it 'book authors' do
+      visit '/books'
+
+      within('.top_books') do
+        expect(page).to have_content(
+          "Authors: #{@book_7.authors.first.name}"
+        )
+        expect(page).to_not have_content(
+          "Authors: #{@book_3.authors.first.name}"
+        )
+      end
+    end
+
+    it 'book page number' do
+      visit '/books'
+
+      within('.top_books') do
+        expect(page).to have_content(
+          "Pages: #{@book_7.page_num}"
+        )
+        expect(page).to_not have_content(
+          "Pages: #{@book_3.page_num}"
+        )
+      end
+    end
+
+    it 'book year published' do
+      visit '/books'
+
+      within('.top_books') do
+        expect(page).to have_content(
+          "Published: #{@book_7.year_published}"
+        )
+        expect(page).to_not have_content(
+          "Published: #{@book_3.year_published}"
+        )
+      end
+    end
+
+    it 'book number of reviews' do
+      visit '/books'
+
+      within('.top_books') do
+        expect(page).to have_content(
+          "#{@book_7.reviews.count} Reviews"
+        )
+        expect(page).to_not have_content(
+          "#{@book_3.reviews.count} Reviews"
+        )
+      end
+    end
+
+  end
+
+  describe 'They should see lowest 3 rated books with' do
+
+    it 'book title' do
+      visit '/books'
+
+      within('.low_books') do
+        expect(page).to have_content(@book_3.title)
+        expect(page).to_not have_content(@book_5.title)
+      end
+    end
+
+    it 'book average rating' do
+      visit '/books'
+
+      within('.low_books') do
+        expect(page).to have_content(
+          "(#{@book_3.reviews.avg_rating.round(1)})"
+        )
+        expect(page).to_not have_content(
+          "(#{@book_5.reviews.avg_rating.round(1)})"
+        )
+      end
+    end
+
+    it 'book authors' do
+      visit '/books'
+
+      within('.low_books') do
+        expect(page).to have_content(
+          "Authors: #{@book_3.authors.first.name}"
+        )
+        expect(page).to_not have_content(
+          "Authors: #{@book_5.authors.first.name}"
+        )
+      end
+    end
+
+    it 'book page number' do
+      visit '/books'
+
+      within('.low_books') do
+        expect(page).to have_content(
+          "Pages: #{@book_3.page_num}"
+        )
+        expect(page).to_not have_content(
+          "Pages: #{@book_5.page_num}"
+        )
+      end
+    end
+
+    it 'book year published' do
+      visit '/books'
+
+      within('.low_books') do
+        expect(page).to have_content(
+          "Published: #{@book_3.year_published}"
+        )
+        expect(page).to_not have_content(
+          "Published: #{@book_5.year_published}"
+        )
+      end
+    end
+
+    it 'book number of reviews' do
+      visit '/books'
+
+      within('.low_books') do
+        expect(page).to have_content(
+          "#{@book_3.reviews.count} Reviews"
+        )
+        expect(page).to_not have_content(
+          "#{@book_7.reviews.count} Reviews"
+        )
+      end
+    end
+
+  end
+
+  describe "They should see the 3 most active users'" do
+
+    it 'name' do
+      visit '/books'
+
+      within('.high_activity_users') do
+        expect(page).to have_content(@user_12.user_name)
+        expect(page).to_not have_content(@user_1.user_name)
+      end
     end
 
     it 'number of reviews' do
       visit '/books'
 
-      expect(page).to have_content("#{@book_1.reviews.count} Reviews")
-      expect(page).to have_content("#{@book_2.reviews.count} Reviews")
+      within('.high_activity_users') do
+        expect(page).to have_content(
+          "#{@user_12.reviews.count} Reviews"
+        )
+        expect(page).to_not have_content(
+          "#{@user_1.reviews.count} Reviews"
+        )
+      end
     end
 
   end
