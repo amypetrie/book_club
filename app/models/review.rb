@@ -5,7 +5,7 @@ class Review < ApplicationRecord
   belongs_to :user
 
   def self.avg_rating
-    average(:rating).round(1)
+    average(:rating)
   end
 
   def self.top_reviews
