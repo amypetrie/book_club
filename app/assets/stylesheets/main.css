@@ -45,11 +45,11 @@ li {
 }
 
 a {
-
+  color: #227C22;
 }
 
 a:hover {
-
+  color:#539253;
 }
 
 p > a, li > a, h2 > a, h3 > a, h4 > a {
