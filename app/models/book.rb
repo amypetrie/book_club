@@ -6,11 +6,19 @@ class Book < ApplicationRecord
   has_many :reviews
 
   def self.top_books
-    select('books.*, AVG(rating) AS avg_rating').joins(:reviews).group(:id).order('avg_rating DESC').limit(3)
+    select('books.*, AVG(rating) AS avg_rating')
+    .joins(:reviews)
+    .group(:id)
+    .order('avg_rating DESC')
+    .limit(3)
   end
 
   def self.low_books
-    select('books.*, AVG(rating) AS avg_rating').joins(:reviews).group(:id).order('avg_rating ASC').limit(3)
+    select('books.*, AVG(rating) AS avg_rating')
+    .joins(:reviews)
+    .group(:id)
+    .order('avg_rating ASC')
+    .limit(3)
   end
 
 end
