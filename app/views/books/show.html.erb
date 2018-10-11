@@ -1,40 +1,50 @@
 <section class="show_book_info">
   <div class="book">
-    <h2><%= @book.title %></h2>
-    <p>Average Rating: <%=@book.reviews.avg_rating%></p>
-    <p>Author(s): <%= @book.authors.author_names%></p>
-    <plas>Pages: <%= @book.page_num %></p>
+    <div class="book_cover_container"><img src="<%= @book.img_url %>" alt="" class="book_cover"></div>
+    <div class="book_text">
+      <h2><%= @book.title %> (<%=@book.reviews.avg_rating.round(1)%>)</p></h2>
+      <p>Author(s): <%= @book.authors.author_names%></p>
+      <p>Pages: <%= @book.page_num %></p>
+      <p>Published: <%=@book.year_published%></p>
+      <p><%= @book.reviews.count %> Reviews</p>
+      <p><a href="/reviews/new" rel="nofollow">Add a new review</a> | <a href="/books/" rel="nofollow">Delete Book</a></p>
+    </div>
   </div>
 </section>
 
 <section class="top_reviews">
   <h2>Top Reviews</h2>
-  <div class="review">
-  <% @top_reviews.each do |review| %>
-    <h4><%=review.review_title%></h4>
-    <p><%=review.user.user_name%> gave a rating of <b><%=review.rating%></b></p>
-  <% end %>
+  <div class="flex_row_3">
+    <% @top_reviews.each do |review| %>
+    <div class="review">
+      <p><%=review.user.user_name%> gave a rating of <%=review.rating%></p>
+      <h4>"<%=review.review_title%>"</h4>
+    </div>
+    <% end %>
   </div>
 </section>
 
 <section class="low_reviews">
   <h2>Lowest Reviews</h2>
-  <div class="review">
+  <div class="flex_row_3">
     <% @low_reviews.each do |review| %>
-      <h4><%=review.review_title%></h4>
-      <p><%=review.user.user_name%> gave a rating of <b><%=review.rating%></b></p>
+    <div class="review">
+      <p><%=review.user.user_name%> gave a rating of <%=review.rating%></p>
+      <h4>"<%=review.review_title%>"</h4>
+    </div>
     <% end %>
   </div>
 </section>
 
 <section class="all_reviews">
   <h2>All Reviews:</h2>
-  <p><a href="/books/new" target="_blank" rel="nofollow">Add a new review</a></p>
-  <div class="review">
+  <div class="review_grid_4">
   <% @book.reviews.each do |review| %>
-    <h4><%=review.review_title%></h4>
-    <p><%=review.user.user_name%> gave a rating of <b><%=review.rating%></b></p>
-    <P>"<%=review.review_text%>"</p>
+    <div class="review">
+      <h4><%=review.review_title%> (<%=review.rating%>)</h4>
+      <p>"<%=review.review_text%>"</p>
+      <p>Submitted by <%=review.user.user_name%></p>
+    </div>
   <% end %>
   </div>
 </section>

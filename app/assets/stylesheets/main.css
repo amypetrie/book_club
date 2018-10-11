@@ -107,6 +107,18 @@ aside {
   align-items: start;
 }
 
+.review_grid_4 {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  align-items: start;
+  justify-items: space-around;
+  margin: 0 1.5%;
+}
+
+.review{
+}
+
 /* High Activity Users */
 .high_activity_user {
   text-align:center;
