@@ -22,8 +22,18 @@ class Book < ApplicationRecord
   end
 
   def self.sort_books(params)
-    if params[:sort] == "page_num"
+    if params[:sort] == 'page_num'
       order(page_num: params[:order])
+    elsif params[:sort] == 'avg_rating'
+      select('books.*, AVG(rating) AS avg_rating')
+      .joins(:reviews)
+      .group(:id)
+      .order("avg_rating #{params[:order]}")
+    elsif params[:sort] == 'review_count'
+      select('books.*, COUNT(rating) AS review_count')
+      .joins(:reviews)
+      .group(:id)
+      .order("review_count #{params[:order]}")
     else
       all
     end
