@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User visits /books' do
+describe 'User visits /authors' do
 
   before(:each) do
     @user_1 = User.create(user_name: "booklover11")
@@ -73,10 +73,14 @@ describe 'User visits /books' do
     @review_22 = @book_8.reviews.create(review_title: "The best!!", rating: 5, review_text: "Super great!", user_id: @user_9.id)
   end
 
-  it 'user clicks on button to sort by page_num in ascending order' do
-    visit '/books'
+  describe 'when visitor visits author show page for author id 1' do
 
-    within(".page_num_links")
-    click_link "ASC"
+    it 'should see name for book author id 1' do
+      visit "/authors/#{@author_1.id}"
+
+      within(".author") do
+      expect(page).to have_content(@author_1.name)
+      end
+    end
   end
 end

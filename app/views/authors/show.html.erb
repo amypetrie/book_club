@@ -1,0 +1,39 @@
+<section class="show_author_info">
+  <div class="author">
+    <div class="author_pic_container"><img src="<%= @author.author_img_url %>" alt="" class="author_pic"></div>
+    <div class="author_text">
+      <h2><%= @author.name %><a class="delete_author_link" href="/books/" rel="nofollow">Delete Author</a></h2>
+    </div>
+  </div>
+</section>
+
+<section class="all_author_books">
+  <h2><%=@author.name%>'s Books</h2>
+    <% @author_books.each do |book| %>
+    <div class="individual_book_and_review">
+      <div class="book">
+      <div class="book_cover_container"><img src="<%= book.img_url %>" alt="" class="book_cover"></div>
+        <div class="book_text">
+        <h3><a href="/books/<%= book.id %>"><%= book.title %></a> <span class="avg_rating">(<%= rounded_1(book.reviews.avg_rating) %>)</span></h3>
+        <% if book.authors.count > 1 %>
+          <h4>Additional author(s):</h4>
+          <% book.authors.each do |author| %>
+            <% if author != @author %>
+              <a href="/authors/<%= author.id %>"><%= author.name %></a>
+              <% end %>
+          <% end %>
+        <% end %>
+          <p>Pages: <%= book.page_num %></p>
+          <p>Published: <%= book.year_published %> </p>
+          <p><%= book.reviews.count %> Reviews</p>
+        </div>
+      </div>
+      <div class="top_review">
+        <div class="review">
+          <h4>"<%=book.top_review.review_title%>"</h4>
+          <p><a href="/users/<%= book.top_review.user.id %>"><%= book.top_review.user.user_name%></a> gave a rating of <%=book.top_review.rating%></p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+</section>

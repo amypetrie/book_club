@@ -17,8 +17,8 @@
   <div class="flex_row_3">
     <% @top_reviews.each do |review| %>
     <div class="review">
-      <p><%=review.user.user_name%> gave a rating of <%=review.rating%></p>
       <h4>"<%=review.review_title%>"</h4>
+      <p><%=review.user.user_name%> gave a rating of <%=review.rating%></p>
     </div>
     <% end %>
   </div>
@@ -29,8 +29,8 @@
   <div class="flex_row_3">
     <% @low_reviews.each do |review| %>
     <div class="review">
-      <p><%=review.user.user_name%> gave a rating of <%=review.rating%></p>
       <h4>"<%=review.review_title%>"</h4>
+      <p><%=review.user.user_name%> gave a rating of <%=review.rating%></p>
     </div>
     <% end %>
   </div>
