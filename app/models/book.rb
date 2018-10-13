@@ -39,4 +39,8 @@ class Book < ApplicationRecord
     end
   end
 
+  def top_review
+    reviews.order(rating: :DESC).first
+  end
+
 end

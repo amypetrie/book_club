@@ -167,6 +167,7 @@ aside {
     margin: auto;
     font-size: 0.9em;
 }
+
 /* Book Show Styles */
 
 /* User Show Styles */
@@ -204,4 +205,61 @@ aside {
 
 .user_sort_links, .user_sort_links a {
     display: inline;
+}
+
+.show_author_info {
+  width: 100%;
+}
+
+.author_text {
+  margin-left: 40px;
+  text-align: left;
+  width: 100%;
+}
+
+.delete_author_link {
+  float: right;
+  font-size: 80%;
+  padding-top: 5px;
+}
+
+.author{
+  display: flex;
+  flex-direction: row;
+}
+
+.author .author_pic_container{
+  width: 25%;  
+}
+
+.author .author_pic {
+    width: 100%;
+    margin: 10px;
+    padding: 2px;
+    border-radius: 2px;
+    box-shadow: 0 0px 3px 1px rgba(0,0,0,0.5);
+    margin-top: 30px;
+    margin-bottom: 0px;
+}
+
+.all_author_books {
+  padding-top: 0px;
+}
+
+.individual_book_and_review {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+}
+
+.individual_book_and_review .book {
+  width: 40%;
+  border: 10px;
+  margin: 20px;
+}
+
+.individual_book_and_review .review {
+  border: 10px;
+  margin: 20px;
+  margin-top: 35px;
 }

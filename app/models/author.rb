@@ -8,4 +8,7 @@ class Author < ApplicationRecord
     pluck(:name).join(', ')
   end
 
+  def author_books
+    books
+  end
 end
