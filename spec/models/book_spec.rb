@@ -118,4 +118,13 @@ describe Book, type: :model do
 
   end
 
+  describe 'book instance method top_review' do
+    it 'should return the top rated review' do
+
+      top_review = @book_2.top_review
+
+      expect(top_review).to eq(@review_4)
+    end
+  end
+
 end

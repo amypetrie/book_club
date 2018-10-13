@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20181010175320) do
 
   create_table "authors", force: :cascade do |t|
     t.string "name"
+    t.string "author_img_url", default: "https://jhupbooks.press.jhu.edu/sites/default/files/default_images/book_1.png"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
