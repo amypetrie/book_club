@@ -28,6 +28,11 @@ h3 {
   font-weight:bold;
 }
 
+h4 {
+  margin:15px 0;
+  font-weight:bold;
+}
+
 p {
 
 }
@@ -124,7 +129,7 @@ aside {
   text-align:center;
 }
 
-/* Book Styles */
+/* Book Index Styles */
 .book {
   display:flex;
 }
@@ -161,6 +166,45 @@ aside {
     padding: 0;
     margin: auto;
     font-size: 0.9em;
+}
+
+/* Book Show Styles */
+
+/* User Show Styles */
+.user_reviews {
+
+}
+
+.user_reviews .review {
+  display:flex;
+  padding:15px 0;
+}
+
+.user_reviews .review .review_info {
+  width:25%;
+  min-width:225px;
+  padding-right:20px;
+}
+
+.user_reviews .review .review_text {
+  padding: 20px;
+    background-color: #111;
+    color: white;
+    width: 75%;
+}
+
+.user_reviews .review .review_text h4 {
+  margin:0;
+}
+
+.user_sort_links {
+  float: right;
+  font-size: 0.8em;
+  padding-top: 5px;
+}
+
+.user_sort_links, .user_sort_links a {
+    display: inline;
 }
 
 .show_author_info {
