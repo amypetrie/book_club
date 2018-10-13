@@ -1,0 +1,26 @@
+<section class="show_user_revies">
+  <div class="user_title_bar">
+    <h2>
+      <%= @user.user_name %>'s Reviews
+      <span class="user_sort_links">
+        Sort: <a href="?sort=newest" title="Sort newest to oldest">Newest</a> | <a href="?sort=oldest" title="Sort oldest to newest">Oldest</a>
+      </span>
+    </h2>
+  </div>
+
+  <div class="user_reviews">
+    <% @user_reviews.each do |review| %>
+      <div class="review" id="review_<%= review.id %>">
+        <div class="review_info">
+          <h3><%=review.review_title%></h3>
+          <p>Rating: <%=review.rating%></p>
+          <p>Written For: <a href="/books/<%=review.book.id%>"><%=review.book.title %></a></p>
+        </div>
+        <div class="review_text">
+          <p><%=review.review_text%></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</section>

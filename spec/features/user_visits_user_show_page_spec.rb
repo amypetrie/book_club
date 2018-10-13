@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User visits /books' do
+describe 'as a visitor' do
 
   before(:each) do
     @user_1 = User.create(user_name: "booklover11")
@@ -28,11 +28,12 @@ describe 'User visits /books' do
 
     @review_4 = @book_2.reviews.create(review_title: "Epic read!", rating: 5, review_text: "Loved it!", user_id: @user_4.id)
     @review_5 = @book_2.reviews.create(review_title: "The best book ever", rating: 4, review_text: "I was entertained throughout", user_id: @user_12.id)
-    @review_6 = @book_2.reviews.create(review_title: "A little too long", rating: 3, review_text: "I enjoyed this book, but it was long", user_id: @user_5.id)
+    @review_6 = @book_2.reviews.create(review_title: "A little too long", rating: 3, review_text: "I enjoyed this book, but it was long", user_id: @user_5.id, created_at: Time.parse('2018-04-04'))
 
     @book_3 = Book.create(title: "How To Help Your Marraige", page_num: 234, year_published: 1015)
     @author_3 = @book_3.authors.create(name: "Dr. Brad Smith")
     @author_4 = @book_3.authors.create(name: "Dr. Angelina Smith")
+    @review_9 = @book_3.reviews.create(review_title: "Poorly written", rating: 1, review_text: "The authors appear to not know how to write.", user_id: @user_5.id, created_at: Time.parse('2018-02-02'))
 
     @review_7 = @book_3.reviews.create(review_title: "Not helpful", rating: 1, review_text: "This book was contrite and trivial.", user_id: @user_6.id)
 
@@ -41,12 +42,12 @@ describe 'User visits /books' do
 
     @review_10 = @book_4.reviews.create(review_title: "Not my favorite", rating: 3, review_text: "The love story was sad and had a bad ending", user_id: @user_9.id)
     @review_11 = @book_4.reviews.create(review_title: "Themes that last the ages", rating: 4, review_text: "I love this book, everyone should read it.", user_id: @user_12.id)
-    @review_12 = @book_4.reviews.create(review_title: "Rich and nostalgic", rating: 5, review_text: "The authors appear to not know how to write.", user_id: @user_5.id)
+    @review_12 = @book_4.reviews.create(review_title: "Rich and nostalgic", rating: 5, review_text: "The authors appear to not know how to write.", user_id: @user_5.id, created_at: Time.parse('2018-08-08'))
 
     @book_5 = Book.create(title: "Wuthering Heights", page_num: 348, year_published: 1890)
     @author_6 = @book_5.authors.create(name: "Emily Bronte")
 
-    @review_13 = @book_5.reviews.create(review_title: "Why the popularity?", rating: 3, review_text: "Overrated tale of love and deception", user_id: @user_5.id)
+    @review_13 = @book_5.reviews.create(review_title: "Why the popularity?", rating: 3, review_text: "Overrated tale of love and deception", user_id: @user_5.id, created_at: Time.parse('2018-01-01'))
     @review_14 = @book_5.reviews.create(review_title: "Undying love", rating: 5, review_text: "I love this book, everyone should read it.", user_id: @user_12.id)
     @review_14 = @book_5.reviews.create(review_title: "Love and Betrayal", rating: 5, review_text: "I love this book, everyone should read it.", user_id: @user_8.id)
 
@@ -73,12 +74,83 @@ describe 'User visits /books' do
     @review_22 = @book_8.reviews.create(review_title: "The best!!", rating: 5, review_text: "Super great!", user_id: @user_9.id)
   end
 
-  it 'user clicks on button to sort by page_num in ascending order' do
-    visit '/books'
+  describe "When I visit a show page for a user" do
 
-    within(".page_num_links")
-    click_link "ASC"
+    describe "I should see:" do
 
-    expect(current_path).to eq("/books")
+      it 'All reviews that this user has written.' do
+        visit "/users/#{@user_1.id}"
+
+        expect(all('.review').length).to eq @user_1.reviews.count
+      end
+
+      describe "Each review has the following information:" do
+
+        it '-Title' do
+          visit "/users/#{@user_1.id}"
+
+          within("#review_#{@review_1.id}") do
+            expect(page).to have_content(@review_1.review_title)
+          end
+        end
+
+        it '-Rating' do
+          visit "/users/#{@user_1.id}"
+
+          within("#review_#{@review_1.id}") do
+            expect(page).to have_content("#{@review_1.rating}")
+          end
+        end
+
+        it '-Review Text' do
+          visit "/users/#{@user_1.id}"
+
+          within("#review_#{@review_1.id}") do
+            expect(page).to have_content(@review_1.review_text)
+          end
+        end
+
+        it '-Book Title' do
+          visit "/users/#{@user_1.id}"
+
+          within("#review_#{@review_1.id}") do
+            expect(page).to have_content("Written For: #{@review_1.book.title}")
+          end
+        end
+
+        it "-When I click on the book title I am taken to that book's show page" do
+          visit "/users/#{@user_1.id}"
+
+          within("#review_#{@review_1.id}") do
+            click_on "#{@book_1.title}"
+            expect(current_path).to eq("/books/#{@book_1.id}")
+          end
+        end
+
+      end
+
+    end
+
+    describe 'I can sort the reviews' do
+
+      it 'newest to oldest' do
+        visit "/users/#{@user_5.id}?sort=newest"
+
+        within('.user_reviews') do
+          expect(all('.review').first).to have_content('Rich and nostalgic')
+        end
+      end
+
+      it 'oldest to newest' do
+        visit "/users/#{@user_5.id}?sort=oldest"
+
+        within('.user_reviews') do
+          expect(all('.review').first).to have_content('Why the popularity?')
+        end
+      end
+
+    end
+
   end
+
 end
