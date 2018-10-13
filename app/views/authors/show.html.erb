@@ -19,7 +19,7 @@
           <h4>Additional author(s):</h4>
           <% book.authors.each do |author| %>
             <% if author != @author %>
-              <p><a href="/authors/<%= author.id %>"><%= author.name %></a></p>
+              <a href="/authors/<%= author.id %>"><%= author.name %></a>
               <% end %>
           <% end %>
         <% end %>
@@ -31,7 +31,7 @@
       <div class="top_review">
         <div class="review">
           <h4>"<%=book.top_review.review_title%>"</h4>
-          <p><%=book.top_review.user.user_name%> gave a rating of <%=book.top_review.rating%></p>
+          <p><a href="/users/<%= book.top_review.user.id %>"><%= book.top_review.user.user_name%></a> gave a rating of <%=book.top_review.rating%></p>
         </div>
       </div>
     </div>

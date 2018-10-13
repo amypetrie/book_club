@@ -185,12 +185,21 @@ aside {
 }
 
 .author .author_pic_container{
-  width: 30%;  
+  width: 25%;  
 }
 
 .author .author_pic {
-  width: 100%;
-  padding-right: 20px;
+    width: 100%;
+    margin: 10px;
+    padding: 2px;
+    border-radius: 2px;
+    box-shadow: 0 0px 3px 1px rgba(0,0,0,0.5);
+    margin-top: 30px;
+    margin-bottom: 0px;
+}
+
+.all_author_books {
+  padding-top: 0px;
 }
 
 .individual_book_and_review {
