@@ -3,7 +3,11 @@
     <div class="book_cover_container"><img src="<%= @book.img_url %>" alt="" class="book_cover"></div>
     <div class="book_text">
       <h2><%= @book.title %> (<%=@book.reviews.avg_rating.round(1)%>)</p></h2>
-      <p>Author(s): <%= @book.authors.author_names%></p>
+      <p>Author(s): <% @book.authors.each do |author| %>
+        <a href="authors/<%=author.id%>">
+        <%= author.name%></a>
+      <% end %>
+      </p>
       <p>Pages: <%= @book.page_num %></p>
       <p>Published: <%=@book.year_published%></p>
       <p><%= @book.reviews.count %> Reviews</p>
@@ -18,7 +22,8 @@
     <% @top_reviews.each do |review| %>
     <div class="review">
       <h4>"<%=review.review_title%>"</h4>
-      <p><%=review.user.user_name%> gave a rating of <%=review.rating%></p>
+      <p><a href="/users/<%=review.user_id%>"><%=review.user.user_name%></a> gave a rating of <%=review.rating%>
+      </p>
     </div>
     <% end %>
   </div>
@@ -30,7 +35,8 @@
     <% @low_reviews.each do |review| %>
     <div class="review">
       <h4>"<%=review.review_title%>"</h4>
-      <p><%=review.user.user_name%> gave a rating of <%=review.rating%></p>
+      <p><a href="/users/<%=review.user_id%>"><%=review.user.user_name%></a> gave a rating of <%=review.rating%>
+      </p>
     </div>
     <% end %>
   </div>
@@ -43,7 +49,8 @@
     <div class="review">
       <h4><%=review.review_title%> (<%=review.rating%>)</h4>
       <p>"<%=review.review_text%>"</p>
-      <p>Submitted by <%=review.user.user_name%></p>
+      <p>Submitted by <a href="/users/<%=review.user_id%>"><%=review.user.user_name%></a>
+      </p>
     </div>
   <% end %>
   </div>
