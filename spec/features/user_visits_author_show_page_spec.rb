@@ -99,10 +99,10 @@ describe 'User visits /authors' do
 
         within(".individual_book_and_review") do
 
-          expect(page).to have_content("The Name of the Wind")
-          expect(page).to have_content("Pages: 570")
-          expect(page).to have_content("Published: 2000")
-          expect(page).to have_content("3 Reviews")
+          expect(page).to have_content(@book_1.title)
+          expect(page).to have_content(@book_1.page_num)
+          expect(page).to have_content(@book_1.year_published)
+          expect(page).to have_content("#{@book_1.reviews.count} Reviews")
         end
       end
 
@@ -110,7 +110,8 @@ describe 'User visits /authors' do
         visit "authors/#{@author_1.id}"
 
         within(".individual_book_and_review") do
-          expect(page).to have_content("Amazing Story")
+          expect(page).to have_content(@review_1.review_title)
+          expect(page).to have_content("#{@review_1.user.user_name} gave a rating of #{@review_1.rating}")
         end
       end
     end

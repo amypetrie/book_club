@@ -73,10 +73,123 @@ describe 'User visits /books' do
     @review_22 = @book_8.reviews.create(review_title: "The best!!", rating: 5, review_text: "Super great!", user_id: @user_9.id)
   end
 
-  it 'user clicks on button to sort by page_num in ascending order' do
-    visit '/books'
+  describe 'user clicks on ASC to sort number of reviews in ascending order' do
 
-    within(".page_num_links")
-    click_link "ASC"
+    it 'the first book should have the least number of reviews' do
+      visit "/books?sort=review_count&order=ASC#all_books"
+
+      within(".book_grid_4 .book:nth-child(1)") do
+        expect(page).to have_content("How To Help Your Marraige")
+      end
+
+    end
+
+    it 'the last book should have the most number of reviews' do
+      visit "/books?sort=review_count&order=ASC#all_books"
+
+      within(".book_grid_4 .book:nth-child(8)") do
+      expect(page).to have_content("Tai-Pan")
+      end
+    end
   end
+
+  describe 'user clicks on DESC to sort number of reviews in descending order' do
+
+    it 'the first book should have the most number of reviews' do
+      visit "/books?sort=review_count&order=DESC#all_books"
+
+      within(".book_grid_4 .book:nth-child(1)") do
+        expect(page).to have_content("Tai-Pan")
+      end
+
+    end
+
+    it 'the last book should have the most number of reviews' do
+      visit "/books?sort=review_count&order=DESC#all_books"
+
+      within(".book_grid_4 .book:nth-child(8)") do
+      expect(page).to have_content("How To Help Your Marraige")
+      end
+    end
+  end
+
+  describe 'user clicks on ASC to sort number of pages in ascending order' do
+
+    it 'the first book should have the least number of pages' do
+      visit "/books?sort=page_num&order=ASC#all_books"
+
+      within(".book_grid_4 .book:nth-child(1)") do
+        expect(page).to have_content("How To Help Your Marraige")
+      end
+
+    end
+
+    it 'the last book should have the most number of pages' do
+      visit "/books?sort=page_num&order=ASC#all_books"
+
+      within(".book_grid_4 .book:nth-child(8)") do
+      expect(page).to have_content("Tai-Pan")
+      end
+    end
+  end
+
+  describe 'user clicks on DESC to sort number of pages in descending order' do
+
+    it 'the first book should have the most number of pages' do
+      visit "/books?sort=page_num&order=DESC#all_books"
+
+      within(".book_grid_4 .book:nth-child(1)") do
+        expect(page).to have_content("Tai-Pan")
+      end
+
+    end
+
+    it 'the last book should have the most number of pages' do
+      visit "/books?sort=page_num&order=DESC#all_books"
+
+      within(".book_grid_4 .book:nth-child(8)") do
+      expect(page).to have_content("How To Help Your Marraige")
+      end
+    end
+  end
+
+  describe 'user clicks on ASC to sort avg_rating in ascending order' do
+
+    it 'the first book should have the least avg_rating' do
+      visit "/books?sort=avg_rating&order=ASC#all_books"
+
+      within(".book_grid_4 .book:nth-child(1)") do
+        expect(page).to have_content("How To Help Your Marraige")
+      end
+    end
+
+    it 'the last book should have the most avg_rating' do
+      visit "/books?sort=avg_rating&order=ASC#all_books"
+
+      within(".book_grid_4 .book:nth-child(8)") do
+      expect(page).to have_content("Tai-Pan")
+      end
+    end
+  end
+
+  describe 'user clicks on DESC to sort avg_rating in descending order' do
+
+    it 'the first book should have the most avg_rating' do
+      visit "/books?sort=avg_rating&order=DESC#all_books"
+
+      within(".book_grid_4 .book:nth-child(1)") do
+        expect(page).to have_content("Tai-Pan")
+      end
+
+    end
+
+    it 'the last book should have the most avg_rating' do
+      visit "/books?sort=avg_rating&order=DESC#all_books"
+
+      within(".book_grid_4 .book:nth-child(8)") do
+      expect(page).to have_content("How To Help Your Marraige")
+      end
+    end
+  end
+
 end
