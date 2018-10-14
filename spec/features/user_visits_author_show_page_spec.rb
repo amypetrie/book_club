@@ -73,13 +73,45 @@ describe 'User visits /authors' do
     @review_22 = @book_8.reviews.create(review_title: "The best!!", rating: 5, review_text: "Super great!", user_id: @user_9.id)
   end
 
-  describe 'when visitor visits author show page for author id 1' do
+  describe 'when I visit the author show page for a specific author' do
 
-    it 'should see name for book author id 1' do
-      visit "/authors/#{@author_1.id}"
+    describe "I should see" do
 
-      within(".author") do
-      expect(page).to have_content(@author_1.name)
+      it 'the author name' do
+        visit "/authors/#{@author_1.id}"
+
+        within(".author_text") do
+        expect(page).to have_content(@author_1.name)
+        end
+      end
+
+      it 'all the authors books' do
+        visit "/authors/#{@author_1.id}"
+
+        expect(all('.individual_book_and_review').length).to eq @author_1.books.count
+      end
+    end
+
+    describe "each book and review section has the following information" do
+
+      it "Title, page num, number of reviews, published date" do
+        visit "/authors/#{@author_1.id}"
+
+        within(".individual_book_and_review") do
+
+          expect(page).to have_content("The Name of the Wind")
+          expect(page).to have_content("Pages: 570")
+          expect(page).to have_content("Published: 2000")
+          expect(page).to have_content("3 Reviews")
+        end
+      end
+
+      it "The title, username, and rating of the top review" do
+        visit "authors/#{@author_1.id}"
+
+        within(".individual_book_and_review") do
+          expect(page).to have_content("Amazing Story")
+        end
       end
     end
   end
