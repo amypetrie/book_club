@@ -5,7 +5,7 @@ body {
   color:#404040;
   margin:0;
   padding:0;
-  background-image: #bfbfbfa3;
+  background-color: #efefef;
 }
 
 body * {
@@ -70,10 +70,14 @@ p > a, li > a, h2 > a, h3 > a, h4 > a {
 header {
   background-image: url("https://kirbymuseum.org/blogs/dynamics/wp-content/uploads/sites/10/2013/03/ruthsbookshelf-1024x610.jpg");
   background-size: contain;
-  padding:15px 10%;
   text-align:center;
   color: white;
   height: 150px;
+}
+
+.overlay_container{
+  padding:15px 10%;
+  background-color: rgba(0,0,0,0.25)
 }
 
 header h1 a {
@@ -89,10 +93,18 @@ footer {
   background-image: url("https://kirbymuseum.org/blogs/dynamics/wp-content/uploads/sites/10/2013/03/ruthsbookshelf-1024x610.jpg");
   background-size: contain;
   color: white;
-  padding:15px 10%;
   text-align:center;
+}
+
+footer .overlay_container {
   height: 150px;
-  padding-top: 50px;
+  display: flex;
+  align-items: center;
+}
+
+footer p{
+  width: 100%;
+  text-align: center;
 }
 
 footer a{
@@ -104,6 +116,8 @@ footer a:hover{
 }
 
 /* Content Styles */
+
+
 
 section {
   padding:15px 10%;
