@@ -44,14 +44,10 @@
 <section class="user_reviews">
   <h2>All Reviews:</h2>
   <% @book.reviews.each do |review| %>
-  <div class="review" id="review_<%= review.id %>">
-    <div class="review_info">
-      <h3><%=review.review_title%></h3>
-      <p>Rating: <%=review.rating%></p>
-      <p>Reviewed by <a href="/users/<%review.user_id%>"><%=review.user.user_name%></a>
-    </div>
-    <div class="review_text">
-      <p><%=review.review_text%></p>
+    <div class="review">
+      <h4><%=review.review_title%> (<%=review.rating%>)</h4>
+      <p>"<%=review.review_text%>"</p>
+      <p>Submitted by <a href="/users/<%= review.user_id %>"><%= review.user.user_name%></a></p>
     </div>
   </div>
   <% end %>
