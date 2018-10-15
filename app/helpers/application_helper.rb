@@ -1,7 +1,11 @@
 module ApplicationHelper
 
   def rounded_1(num)
-    num.round(1)
+    if num == nil
+      "0"
+    else
+      num.round(1)
+    end
   end
 
 end

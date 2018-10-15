@@ -2,9 +2,10 @@
 body {
   font-family: Ubuntu, sans-serif;
   font-size:1em;
-  color:#111;
+  color:#404040;
   margin:0;
   padding:0;
+  background-image: #bfbfbfa3;
 }
 
 body * {
@@ -21,6 +22,10 @@ h2 {
     padding: 0 10px 10px;
     font-weight: bold;
     border-bottom: 1px solid rgb(17,17,17);
+}
+
+.top_reviews h2{
+  margin-top: 15px;
 }
 
 h3 {
@@ -50,11 +55,11 @@ li {
 }
 
 a {
-  color: #227C22;
+  color: #965C61;
 }
 
 a:hover {
-  color:#539253;
+  color:#8ba22f;
 }
 
 p > a, li > a, h2 > a, h3 > a, h4 > a {
@@ -63,18 +68,39 @@ p > a, li > a, h2 > a, h3 > a, h4 > a {
 
 /* Header Styles */
 header {
-  background-color:#111;
-  color:white;
+  background-image: url("https://kirbymuseum.org/blogs/dynamics/wp-content/uploads/sites/10/2013/03/ruthsbookshelf-1024x610.jpg");
+  background-size: contain;
   padding:15px 10%;
   text-align:center;
+  color: white;
+  height: 150px;
+}
+
+header h1 a {
+  color: #a7b37d;
+}
+
+header a:hover {
+  color:#8ba22f;
 }
 
 /* Footer Styles */
 footer {
-  background-color:#111;
-  color:white;
+  background-image: url("https://kirbymuseum.org/blogs/dynamics/wp-content/uploads/sites/10/2013/03/ruthsbookshelf-1024x610.jpg");
+  background-size: contain;
+  color: white;
   padding:15px 10%;
   text-align:center;
+  height: 150px;
+  padding-top: 50px;
+}
+
+footer a{
+  color :#a7b37d;
+}
+
+footer a:hover{
+  color: #8ba22f;
 }
 
 /* Content Styles */
@@ -139,9 +165,11 @@ aside {
 }
 
 .book_cover {
-  width:100%;
+  width:75%;
   height:auto;
   padding:15px 0;
+  padding-top: 45px;
+  padding-bottom: 0px;
 }
 
 .book_text {
@@ -188,9 +216,11 @@ aside {
 
 .user_reviews .review .review_text {
   padding: 20px;
-    background-color: #111;
+    background-color: #a7b37d;
     color: white;
     width: 75%;
+    border-radius: 2px;
+    box-shadow: 0 0px 3px 1px rgba(0,0,0,0.5);
 }
 
 .user_reviews .review .review_text h4 {
@@ -205,6 +235,14 @@ aside {
 
 .user_sort_links, .user_sort_links a {
     display: inline;
+}
+
+.sort_list{
+    border-radius: 2px;
+    box-shadow: 0 0px 3px 1px rgba(0,0,0,0.5);
+    background-color: #a7b37d;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .show_author_info {
