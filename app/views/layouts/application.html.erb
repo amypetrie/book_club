@@ -12,13 +12,17 @@
 
   <body class="<%= @page_class %>">
     <header>
-      <h1>Welcome to the<a href="/" title="Home" class="logo-link">Book Club</a></h1>
-    </header>
+      <div class="overlay_container">
+      <h1>Welcome to the <a href="/" title="Home" class="logo-link">Book Club</a></h1>
+      </div>
+        </header>
     <div class="maint-content">
       <%= yield %>
     </div>
     <footer>
-      <p>By <a href="https://github.com/amypetrie" target="_blank" title="Amy's Github">Amy Petrie</a> and <a href="https://github.com/TimothyFell" target="_blank" title="Tim's Github">Tim Fell</a></p>
+      <div class="overlay_container">
+      <p>By <a href="#" title="Amy's Github">Amy Petrie</a> and <a href="#" title="Tim's Github">Tim Fell</a></p>
+    </div>
     </footer>
   </body>
 </html>
