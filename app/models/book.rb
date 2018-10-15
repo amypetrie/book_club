@@ -35,7 +35,7 @@ class Book < ApplicationRecord
       .group(:id)
       .order("review_count #{params[:order]}")
     else
-      all
+      all.order(title: :asc)
     end
   end
 

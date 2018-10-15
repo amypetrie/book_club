@@ -76,7 +76,7 @@ header {
   height: 150px;
 }
 
-header a {
+header h1 a {
   color: #a7b37d;
 }
 
@@ -92,6 +92,7 @@ footer {
   padding:15px 10%;
   text-align:center;
   height: 150px;
+  padding-top: 50px;
 }
 
 footer a{
