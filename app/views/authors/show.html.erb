@@ -30,8 +30,12 @@
       </div>
       <div class="top_review">
         <div class="review">
+          <% if book.top_review == nil%>
+          <p>No reviews yet</p>
+          <%else%>
           <h4>"<%=book.top_review.review_title%>"</h4>
           <p><a href="/users/<%= book.top_review.user.id %>"><%= book.top_review.user.user_name%></a> gave a rating of <%=book.top_review.rating%></p>
+          <%end%>
         </div>
       </div>
     </div>
