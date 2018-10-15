@@ -71,30 +71,31 @@ header {
   background-color:#73464A;
   padding:15px 10%;
   text-align:center;
+  color: white;
 }
 
 header a {
-  color:#E5E5E5;
+  color: #a7b37d;
 }
 
 header a:hover {
-  color: #727F44;
+  color:#8ba22f;
 }
 
 /* Footer Styles */
 footer {
   background-color:#73464A;
-  color: #A4A680;
+  color: white;
   padding:15px 10%;
   text-align:center;
 }
 
 footer a{
-  color:#E5E5E5;
+  color :#a7b37d;
 }
 
 footer a:hover{
-  color: #727F44;
+  color: #8ba22f;
 }
 
 /* Content Styles */
@@ -210,9 +211,11 @@ aside {
 
 .user_reviews .review .review_text {
   padding: 20px;
-    background-color: #111;
+    background-color: #a7b37d;
     color: white;
     width: 75%;
+    border-radius: 2px;
+    box-shadow: 0 0px 3px 1px rgba(0,0,0,0.5);
 }
 
 .user_reviews .review .review_text h4 {
@@ -227,6 +230,14 @@ aside {
 
 .user_sort_links, .user_sort_links a {
     display: inline;
+}
+
+.sort_list{
+    border-radius: 2px;
+    box-shadow: 0 0px 3px 1px rgba(0,0,0,0.5);
+    background-color: #a7b37d;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .show_author_info {
