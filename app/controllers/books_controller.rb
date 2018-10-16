@@ -41,12 +41,19 @@ class BooksController < ApplicationController
 
   def destroy
     book = Book.find(params[:id])
-    # author = book.author_books.find_by(book_id: params[:id])
-    review = Review.find_by(book_id: params[:id])
-    author_book = AuthorBook.find_by(book_id: params[:id])
-    review.destroy
-    author_book.destroy
-    book.destroy
+    review = Review.where(book_id: params[:id])
+    author_book_relationships = AuthorBook.where(book_id: params[:id])
+    author_book_relationships.each do |a|
+      a.destroy
+    end
+    if review.length > 0
+      review.each do |r|
+        r.destroy
+      end
+      book.destroy
+    else
+      book.destroy
+    end
     redirect_to books_path
   end
 
