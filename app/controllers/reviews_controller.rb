@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
     if User.find_by(user_name: user_name) == nil
       user = User.create(user_name: user_name)
     else
-      user = User.find_by(user_name: user_name)
+      user = User.where(user_name: user_name)
     end
 
     review = reviewed_book.reviews.create(rating: review_params[:rating], review_text: review_params[:review_text], review_title: review_params[:review_title], user_id: user.id)
@@ -22,7 +22,7 @@ class ReviewsController < ApplicationController
 
   def destroy
     user = User.find(params[:user_id])
-    review = user.reviews.find(params[:id])
+    review = Review.find(params[:id])
     review.destroy
     redirect_to user_path(user)
   end
