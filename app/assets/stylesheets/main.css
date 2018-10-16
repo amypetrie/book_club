@@ -329,3 +329,18 @@ aside {
     width: 100%;
     max-width: 500px;
 }
+
+.new_form input[type="text"],
+.new_form input[type="number"] {
+  width:100%;
+}
+
+.new_form label {
+  width:100%;
+  font-size:1.25em;
+}
+
+.new_form input[type="submit"] {
+  width:50%;
+  min-width:200px;
+}
