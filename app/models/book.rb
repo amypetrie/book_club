@@ -21,19 +21,29 @@ class Book < ApplicationRecord
     .limit(3)
   end
 
+  # def self.no_ratings
+  #   where(rating: nil)
+  # end
+
   def self.sort_books(params)
+    order = params[:order]
+    if order == "DESC"
+      null_order = "NULLS LAST"
+    else
+      null_order = "NULLS FIRST"
+    end
     if params[:sort] == 'page_num'
       order(page_num: params[:order])
     elsif params[:sort] == 'avg_rating'
-      select('books.*, AVG(rating) AS avg_rating')
-      .joins(:reviews)
+      x = select('books.*, AVG(rating) AS avg_rating')
+      .left_outer_joins(:reviews)
       .group(:id)
-      .order("avg_rating #{params[:order]}")
+      .order("avg_rating #{params[:order]} #{null_order}")
     elsif params[:sort] == 'review_count'
       select('books.*, COUNT(rating) AS review_count')
-      .joins(:reviews)
+      .left_outer_joins(:reviews)
       .group(:id)
-      .order("review_count #{params[:order]}")
+      .order("review_count #{params[:order]} NULLS FIRST")
     else
       all.order(title: :asc)
     end
