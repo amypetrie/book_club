@@ -21,10 +21,6 @@ class Book < ApplicationRecord
     .limit(3)
   end
 
-  # def self.no_ratings
-  #   where(rating: nil)
-  # end
-
   def self.sort_books(params)
     order = params[:order]
     if order == "DESC"
