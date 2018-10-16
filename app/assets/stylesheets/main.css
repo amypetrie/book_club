@@ -336,8 +336,9 @@ aside {
     max-width: 500px;
 }
 
-.new_form input[type="text"],
-.new_form input[type="number"] {
+input[type="text"],
+input[type="number"],
+textarea {
     width: 100%;
     padding: 5px;
     border-radius: 3px;
@@ -346,20 +347,22 @@ aside {
     font-size: 1em;
     line-height: 1.25em;
     border-color: #ddd;
+    border-style:inset;
 }
 
-.new_form input[type="text"]:focus,
-.new_form input[type="number"]:focus {
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
     border: 2px solid #8ba22f;
     outline-style: none;
 }
 
-.new_form label {
+label {
   width:100%;
   font-size:1.25em;
 }
 
-.new_form input[type="submit"] {
+input[type="submit"] {
     width: 50%;
     min-width: 200px;
     margin: auto;
@@ -372,7 +375,7 @@ aside {
     border-radius: 5px;
 }
 
-.new_form input[type="submit"]:hover {
+input[type="submit"]:hover {
   background-color:#8ba22f;
   cursor:pointer;
 }

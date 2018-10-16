@@ -1,11 +1,11 @@
 <section class="form_container">
   <%= form_for @book, html:{class:'new_form book_form'} do |f| %>
     <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, placeholder:'A Book of Tales' %>
     <%= f.label :page_num %>
-    <%= f.number_field :page_num %>
+    <%= f.number_field :page_num, placeholder: '481' %>
     <%= f.label :year_published %>
-    <%= f.number_field :year_published %>
+    <%= f.number_field :year_published, placeholder: '1981' %>
     <%= f.label :authors %>
     <input type="text" name="book[authors]" placeholder="Author Name(s)" />
     <%= f.submit %>
