@@ -12,8 +12,9 @@ class ReviewsController < ApplicationController
     if User.find_by(user_name: user_name) == nil
       user = User.create(user_name: user_name)
     else
-      user = User.where(user_name: user_name)
+      user = User.find_by(user_name: user_name)
     end
+
     review = reviewed_book.reviews.create(rating: review_params[:rating], review_text: review_params[:review_text], review_title: review_params[:review_title], user_id: user.id)
     redirect_to book_url(reviewed_book)
   end
