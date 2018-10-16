@@ -1,4 +1,5 @@
-<%= form_for [@book, @review] do |f| %>
+<section class="form_container">
+  <%= form_for [@book, @review], html:{class:'new_form review_form'} do |f| %>
   <%= f.label :review_title %>
   <%= f.text_field :review_title %>
   <%= f.label :rating %>
@@ -9,3 +10,4 @@
   <%= f.text_field :review_text %>
   <%= f.submit %>
 <%end%>
+</section>
