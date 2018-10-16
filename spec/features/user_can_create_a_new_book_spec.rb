@@ -16,7 +16,7 @@ describe 'user visits book index page' do
 
     click_on "Create Book"
 
-    expect(page).to have_content(title)
+    expect(page).to have_content("Test Book")
     expect(page).to have_content(page_num)
     expect(page).to have_content(year_published)
     expect(page).to have_content("Amy Petrie")
@@ -50,4 +50,5 @@ describe 'user can create a book for an existing author' do
   book_2 = Book.create(title: "Shogun", page_num: 995, year_published: 1968)
   author_2 = book_2.authors.create(name: "James Clavell")
 
+end
 end
