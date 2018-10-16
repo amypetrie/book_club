@@ -16,13 +16,12 @@ class ReviewsController < ApplicationController
     end
 
     review = reviewed_book.reviews.create(rating: review_params[:rating], review_text: review_params[:review_text], review_title: review_params[:review_title], user_id: user.id)
-
     redirect_to book_url(reviewed_book)
   end
 
   def destroy
     user = User.find(params[:user_id])
-    review = user.reviews.find(params[:id])
+    review = Review.find(params[:id])
     review.destroy
     redirect_to user_path(user)
   end

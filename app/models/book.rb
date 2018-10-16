@@ -2,8 +2,8 @@ class Book < ApplicationRecord
 
   validates_presence_of :title, :page_num, :year_published
   has_many :author_books
-  has_many :authors, through: :author_books
-  has_many :reviews
+  has_many :authors, through: :author_books, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   def self.top_rated_books
     select('books.*, AVG(rating) AS avg_rating')
@@ -20,10 +20,6 @@ class Book < ApplicationRecord
     .order('avg_rating ASC')
     .limit(3)
   end
-
-  # def self.no_ratings
-  #   where(rating: nil)
-  # end
 
   def self.sort_books(params)
     order = params[:order]

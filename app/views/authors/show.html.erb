@@ -2,7 +2,8 @@
   <div class="author">
     <div class="author_pic_container"><img src="<%= @author.author_img_url %>" alt="" class="author_pic"></div>
     <div class="author_text">
-      <h2><%= @author.name %><a class="delete_author_link" href="/books/" rel="nofollow">Delete Author</a></h2>
+      <h2><%= @author.name %><%= link_to 'Delete', author_path(@author),
+        data: {:confirm => 'Are you sure?'}, :method => :delete %></h2>
     </div>
   </div>
 </section>
