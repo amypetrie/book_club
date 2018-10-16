@@ -41,7 +41,7 @@ describe 'user visits book show page' do
     expect(current_path).to eq book_path(book_1)
     expect(page).to have_content("cool")
     expect(page).to have_content("yes")
-    expect(page).to have_content("amy_p")
+    expect(page).to have_content("Amy P")
     expect(page).to have_content("Rating: 5")
   end
 

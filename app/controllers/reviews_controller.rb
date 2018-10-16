@@ -32,6 +32,7 @@ class ReviewsController < ApplicationController
     end
 
     def review_user_params
+      params[:review][:user] = params[:review][:user].titleize
       params.require(:review).permit(:user)
     end
 end

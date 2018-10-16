@@ -25,28 +25,41 @@ class BooksController < ApplicationController
         author = Author.find_by(name: author_name)
       end
     end
-      if Book.find_by(title: book_params[:title]) == nil
-        book = author_objects.first.books.create(book_params)
-        author_objects.delete_at(0)
-        if author_objects.length > 0
-          author_objects.each do |author|
-            book.authors << author
-          end
+    if Book.find_by(title: book_params[:title]) == nil
+      book = author_objects.first.books.create(book_params)
+      author_objects.delete_at(0)
+      if author_objects.length > 0
+        author_objects.each do |author|
+          book.authors << author
         end
-        redirect_to book_path(Book.all.last)
-      else
-        redirect_to new_book_path
       end
+      redirect_to book_path(Book.all.last)
+    else
+      redirect_to new_book_path
+    end
   end
 
   def destroy
     book = Book.find(params[:id])
-    book.destroy
+    review = Review.where(book_id: params[:id])
+    author_book_relationships = AuthorBook.where(book_id: params[:id])
+    author_book_relationships.each do |a|
+      a.destroy
+    end
+    if review.length > 0
+      review.each do |r|
+        r.destroy
+      end
+      book.destroy
+    else
+      book.destroy
+    end
     redirect_to books_path
   end
 
   private
     def book_params
+      params[:book][:title] = params[:book][:title].titleize
       params.require(:book).permit(:title, :page_num, :year_published)
     end
 
