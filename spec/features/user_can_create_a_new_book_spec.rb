@@ -106,4 +106,3 @@ describe 'user visits book index page' do
     end
   end
 end
-end
