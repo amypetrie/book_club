@@ -1,13 +1,13 @@
 <section class="form_container">
   <%= form_for [@book, @review], html:{class:'new_form review_form'} do |f| %>
   <%= f.label :review_title %>
-  <%= f.text_field :review_title %>
+  <%= f.text_field :review_title, placeholder:'Best Book Ever!' %>
   <%= f.label :rating %>
-  <%= f.number_field :rating %>
+  <%= f.number_field :rating, placeholder:'5' %>
   <%= f.label :user %>
-  <%= f.text_field :user %>
+  <%= f.text_field :user, placeholder:'book_lover' %>
   <%= f.label :review_text %>
-  <%= f.text_field :review_text %>
+  <%= f.text_area :review_text, placeholder:"This book brings to life everything I've ever dreamed of!" %>
   <%= f.submit %>
 <%end%>
 </section>
