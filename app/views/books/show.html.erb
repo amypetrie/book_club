@@ -10,7 +10,7 @@
       <p>Pages: <%= @book.page_num %></p>
       <p>Published: <%=@book.year_published%></p>
       <p><%= @book.reviews.count %> Reviews</p>
-      <p><a href="/reviews/new" rel="nofollow">Add a new review</a> | <a href="/books/" rel="nofollow">Delete Book</a></p>
+      <p><a href="<%= new_book_review_path(@book) %>" rel="nofollow">Add a new review</a> | <a href="/books/" rel="nofollow">Delete Book</a></p>
     </div>
   </div>
 </section>

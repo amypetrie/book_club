@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root 'index#index'
 
-  resources :books
+  resources :books do
+    resources :reviews, only: [:new, :create]
+  end
   resources :authors
-  resources :users
+  resources :users do
+    resources :reviews, only: [:destroy]
+  end
 end
