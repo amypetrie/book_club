@@ -15,8 +15,7 @@ describe 'user visits book index page' do
     fill_in 'book[authors]', with: authors
 
     click_on "Create Book"
-    save_and_open_page
-
+    
     expect(page).to have_content(title)
     expect(page).to have_content(page_num)
     expect(page).to have_content(year_published)

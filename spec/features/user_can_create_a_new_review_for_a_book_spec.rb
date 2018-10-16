@@ -29,8 +29,7 @@ describe 'user visits book show page' do
     author_2 = book_2.authors.create(name: "James Clavell")
 
     visit new_book_review_path(book_1)
-    save_and_open_page
-
+    
     fill_in 'review[review_title]', with: "cool"
     fill_in 'review[review_text]', with: "yes"
     fill_in 'review[user]', with: "amy_p"
