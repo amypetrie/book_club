@@ -116,3 +116,5 @@ book_13.reviews.create(review_title: "The best book Ive read in a while", rating
 book_13.reviews.create(review_title: "A little too long", rating: 3, review_text: "I enjoyed this book, but it was long", user_id: user_10.id)
 
 book_14 = author_7.books.create(title: "As the Bell Tolls", page_num: 259, year_published: 1950)
+
+book_15 = author_3.books.create(title: "How To SAVE Your Marraige", page_num: 234, year_published: 2015)

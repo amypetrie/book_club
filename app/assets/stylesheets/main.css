@@ -145,11 +145,10 @@ aside {
 }
 
 .book_grid_4 {
-  width: 75%;
+  width: 66%;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  justify-items: center;
-  align-items: start;
+  align-items: center;
 }
 
 .review_grid_4 {
@@ -281,7 +280,7 @@ aside {
 }
 
 .author .author_pic_container{
-  width: 25%;  
+  width: 25%;
 }
 
 .author .author_pic {
